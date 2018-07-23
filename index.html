@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Directory Database</title>
+    <meta name=“viewport” content=“width=device-width,initial-scale=1”>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">     
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+    <div class="well well-sm">  
+            <strong><h1>IAMTW Directory Database</h1></strong>
+    </div>
+            
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <input type="email" id="txtemail" placeholder="email">
+                <input type="password" id="txtpw" placeholder="password">
+                <button id="signup">Sign Up</button>
+                <button id="login">Log In</button>
+                <button id="logout">Log Out</button>
+        </div>
+        <div class="col-md-4">
+                <div class="data">
+                </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12 separator">
+            <input id="search" type="text" placeholder="search">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-sm-12 separator">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>Add Your Information</strong>
+                    </h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                 <!-- Here we create an HTML Form for handling the inputs-->
+                <form role="form">
+
+                <!-- Here we create the text box for capturing the  name-->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+
+                <!-- Here we capture the address  -->
+                <div class="form-group">
+                    <label for="destination">Address:</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address">
+                </div>
+
+                <!-- Here we capture the phone-->
+                <div class="form-group">
+                    <label for="train-time">Phone(s):</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone (you can enter more than one)">
+                </div>
+
+                <!-- Here we capture the email -->
+                <div class="form-group">
+                    <label for="freq">Email:</label>
+                    <input type="text" class="form-control" id="email" placeholder="Email (you can enter more than one)">
+                </div>
+
+
+                <!-- Here we capture the website/social media -->
+                <div class="form-group">
+                    <label for="freq">Website(s)/Social Media:</label>
+                    <input type="text" class="form-control" id="website" placeholder="Website/Social Media (you can enter more than one URL)">
+                </div>
+
+                <!-- Here we capture the email -->
+                <div class="form-group">
+                    <label for="freq">Credits:</label>
+                    <input type="text" class="form-control" id="credits" placeholder="Credits">
+                </div>
+
+                <!-- Here we have the submit button -->
+                <button class="btn btn-info btn-lg addentry">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- This row will handle the directory output-->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Current Train schedule-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Directory Entry</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table table-hover" id='directory-entry'>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer Region -->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Line Break followed by closing -->
+                <hr>
+                <h5 class="text-center">
+                    <small>Directory courtesy Joan Marie Verba
+                    </small>
+                </h5>
+
+            </div>
+        </div>
+
+
+
+        <script src="config.js"></script>
+        <script src="directory.js"></script>
+       
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Edit entry here</h4>
+                </div>
+                <div class="modal-body">
+                                    <!-- Here we create an HTML Form for handling the inputs-->
+                    <form role="form">
+
+                    <!-- Here we create the text box for capturing the  name-->
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <!-- <h5 id="auname"></h5> -->
+                        <input type="text" class="form-control" id="mname" value="mname">
+                    </div>
+
+                    <!-- Here we capture the address  -->
+                    <div class="form-group">
+                        <label for="destination">Address:</label>
+                        <input type="text" class="form-control" id="maddress" value="maddress">
+                    </div>
+
+                    <!-- Here we capture the phone-->
+                    <div class="form-group">
+                        <label for="train-time">Phone(s):</label>
+                        <input type="text" class="form-control" id="mphone" value="mphone" >
+                    </div>
+
+                    <!-- Here we capture the email -->
+                    <div class="form-group">
+                        <label for="freq">Email:</label>
+                        <input type="text" class="form-control" id="memail" value="memail">
+                    </div>
+
+
+                    <!-- Here we capture the website/social media -->
+                    <div class="form-group">
+                        <label for="freq">Website(s)/Social Media:</label>
+                        <input type="text" class="form-control" id="mwebsite" value="mwebsite">
+                    </div>
+
+                    <!-- Here we capture the email -->
+                    <div class="form-group">
+                        <label for="freq">Credits:</label>
+                        <input type="text" class="form-control" id="mcredits" value="mcredits">
+                    </div>
+
+                    <!-- Here we have the submit button -->
+                    <button class="btn btn-info btn-lg editentry">Submit</button>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

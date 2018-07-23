@@ -1,0 +1,66 @@
+body {
+    background-color: antiquewhite;
+    min-height: 100%;
+
+}
+
+.btnsearch {
+    margin-left: 8vw;
+    margin-bottom: 10px;
+}
+
+.data {
+    margin-right: 10px;
+}
+
+.deletebtn {
+    float: right;
+}
+
+.glyphicon {
+    border: 1px solid black;
+    padding: 3px;
+    background-color: azure;
+}
+
+
+h1 {
+    color: midnightblue;
+    font-family: 'Roboto';
+    font-size: 48px;
+    text-align: center;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+
+h2, h3 {
+    color: antiquewhite;
+    font-family: 'Roboto';
+    font-size: 22px;
+    font-weight: bold;
+}
+
+h4 {
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    padding-top: 0;
+}
+
+.modifybtn {
+    margin-left: 65vw;
+}
+
+.separator {
+    margin-top: 2vw;
+}
+
+.subtitle {
+     border: 5px solid red;
+}
+
+
+.maintitle {
+    margin-top: 30px;
+} 
+
