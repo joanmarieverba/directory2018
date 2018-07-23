@@ -64,7 +64,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $("#login").hide();
         $("#logout").show();
         $("#show_on_login").show();
-
+        $("#results").hide();
         uid = firebaseUser.uid;
         console.log("uid ", uid);
 
@@ -209,12 +209,23 @@ $(".glyphicon-search").on("click",function (){
     let searchTerm = $("#search").val();
     console.log("works");
     database.ref().child('/').orderByChild('wname').equalTo(searchTerm).on("value", function (snapshot) {
-        console.log(snapshot.val());
+        $("#results").show();
         snapshot.forEach(function (data) {
-            console.log(data);
+            console.log(data.val());
             //id or class and append or use modal
+            $("#results").append("<div>" +
+                data.val().wname + "</div><div>" +
+                data.val().waddress + "</div><div>" +
+                data.val().wphone + "</div><div>" +
+                data.val().wemail + "</div><div>" +
+                data.val().wwebsite + "</div><div>" +
+                data.val().wcredits + "</div>"
+                + "<button class='modifybtn' data=" + data.key + ">EDIT ENTRY</button>"
+                + "<button class='deletebtn' data=" + data.key + ">DELETE ENTRY</button></div>"
+                + "<div>" + "<hr>" + "</div>");
         });
     });
-    
+    //clear text box
+    $("#search").val("");
 })
 
