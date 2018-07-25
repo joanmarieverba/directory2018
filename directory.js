@@ -104,11 +104,12 @@ $(document).on("click", ".modifybtn", function (event) {
     let key = $(this).attr("data");
     console.log("key  ", key);
     $('#myModal').modal();
-    //database.ref().child(key).on("child_added", function(snap){
+
     database.ref().child(key).on("value", function (snap) {
         console.log(snap.val());
         console.log("modal name ", snap.val().wname);
         $("#mname").val(snap.val().wname);
+        $("#mlname").val(snap.val().wlname);
         $("#maddress").val(snap.val().waddress);
         $("#mphone").val(snap.val().wphone);
         $("#memail").val(snap.val().wemail);
@@ -124,15 +125,17 @@ $(document).on("click", ".editentry", function (event) {
     event.preventDefault();
 
     let mname = $("#mname").val();
+    let mlname = $("mlname").val();
     let maddress = $("#maddress").val();
     let mphone = $("#mphone").val();
     let memail = $("#memail").val();
     let mwebsite = $("#mwebsite").val();
     let mcredits = $("#mcredits").val();
     let mkey = $(".editentry").attr("key");
-
+    console.log("mkey, ", mkey);
     database.ref("/" + mkey).set({
         wname: mname,
+        wlname: mlname,
         waddress: maddress,
         wphone: mphone,
         wemail: memail,
@@ -150,6 +153,7 @@ $(document).on("click", ".addentry", function (event) {
 
     // This  code will grab the input from the textbox
     let authorName = $("#name").val().trim();
+    let authorLname = $("#lname").val().trim();
     let authorAddress = $("#address").val().trim();
     let authorPhone = $("#phone").val().trim();
     let authorEmail = $("#email").val().trim();
@@ -159,6 +163,7 @@ $(document).on("click", ".addentry", function (event) {
     // Creates local "temporary" object for holding data
     let newAuthor = {
         wname: authorName,
+        wlname: authorLname,
         waddress: authorAddress,
         wphone: authorPhone,
         wemail: authorEmail,
@@ -173,6 +178,7 @@ $(document).on("click", ".addentry", function (event) {
 
     //clear all text boxes
     $("#name").val("");
+    $("#lname").val("");
     $("#address").val("");
     $("#phone").val("");
     $("#email").val("");
@@ -180,7 +186,7 @@ $(document).on("click", ".addentry", function (event) {
     $("#credits").val("");
 });
 
-
+// Place entries into table
 
 database.ref().on("value", function (contents) {
     $("#directory-entry").empty();
@@ -189,7 +195,7 @@ database.ref().on("value", function (contents) {
         // Add data into the table
         console.log("data.key", data.key);
         $("#directory-entry").append("<div>" + 
-        data.val().wname + "</div><div>" + 
+        data.val().wname + " " + data.val().wlname + "</div><div>" + 
         data.val().waddress + "</div><div>" +
         data.val().wphone + "</div><div>" + 
         data.val().wemail + "</div><div>" + 
@@ -214,7 +220,8 @@ $(".glyphicon-search").on("click",function (){
             console.log(data.val());
             //id or class and append or use modal
             $("#results").append("<div>" +
-                data.val().wname + "</div><div>" +
+                data.val().wname + " " + data.val().wlname + "</div><div>" +
+                data.val().wlname + "</div><div>" +
                 data.val().waddress + "</div><div>" +
                 data.val().wphone + "</div><div>" +
                 data.val().wemail + "</div><div>" +
@@ -229,3 +236,9 @@ $(".glyphicon-search").on("click",function (){
     $("#search").val("");
 })
 
+
+
+// Order by value
+// firebase.database().ref('Regions').orderByValue.on('value', function (snapshot) {
+//     loadRegions(snapshot.val());
+// });

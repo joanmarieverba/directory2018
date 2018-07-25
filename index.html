@@ -72,8 +72,14 @@
 
                 <!-- Here we create the text box for capturing the  name-->
                 <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <div class="col-md-6 align">
+                        <label for="name">First Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="First Name (with middle name, initials, etc.)">
+                    </div>
+                    <div class="col-md-6 align">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                    </div>
                 </div>
 
                 <!-- Here we capture the address  -->
@@ -172,10 +178,20 @@
                     <form role="form">
 
                     <!-- Here we create the text box for capturing the  name-->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="name">Name:</label>
-                        <!-- <h5 id="auname"></h5> -->
                         <input type="text" class="form-control" id="mname" value="mname">
+                    </div> -->
+
+                    <div class="form-group">
+                        <div class="col-md-6 align">
+                            <label for="name">First Name:</label>
+                            <input type="text" class="form-control" id="mname" value="mname" placeholder="First Name (with middle name, initials, etc.)">
+                        </div>
+                        <div class="col-md-6 align">
+                            <label for="lname">Last Name:</label>
+                            <input type="text" class="form-control" id="mlname" value="mlname" placeholder="Last Name">
+                        </div>
                     </div>
 
                     <!-- Here we capture the address  -->
