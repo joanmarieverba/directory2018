@@ -1,4 +1,4 @@
 # directory2018
-Directory database using Firebase for authentication
+Directory database using Firebase for authentication    
 Needs Firebase config file with Firebase key in order to run (ignored in repository)   
 
