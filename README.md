@@ -1,3 +1,4 @@
 # directory2018
-Directory database using firebase
-Config file has been ignored   
+Directory database using Firebase for authentication
+Needs Firebase config file with Firebase key in order to run (ignored in repository)   
+
