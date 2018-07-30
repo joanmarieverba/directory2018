@@ -125,7 +125,7 @@ $(document).on("click", ".editentry", function (event) {
     event.preventDefault();
 
     let mname = $("#mname").val();
-    let mlname = $("mlname").val();
+    let mlname = $("#mlname").val();
     let maddress = $("#maddress").val();
     let mphone = $("#mphone").val();
     let memail = $("#memail").val();
@@ -190,17 +190,45 @@ $(document).on("click", ".addentry", function (event) {
 
 database.ref().on("value", function (contents) {
     $("#directory-entry").empty();
-
+   // console.log("contents ", contents.val());
+    let newArray = [];
     contents.forEach(function (data){
+        let newObject = {
+            wname: data.val().wname,
+            wlname: data.val().wlname,
+            waddress: data.val().waddress,
+            wphone: data.val().wphone,
+            wemail: data.val().wemail,
+            wwebsite: data.val().wwebsite,
+            wcredits: data.val().wcredits,
+            key: data.key,
+        }
+        newArray.push(newObject);
+
+    })
+
+//alphabetical sort
+    newArray.sort(function (a, b) {
+        var nameA = a.wlname.toLowerCase(), nameB = b.wlname.toLowerCase()
+        if (nameA < nameB) //sort string ascending
+            return -1
+        if (nameA > nameB)
+            return 1
+        return 0 //default return value (no sorting)
+    })
+
+    console.log("NewArray ", newArray);
+
+    newArray.forEach(function (data) {
         // Add data into the table
         console.log("data.key", data.key);
-        $("#directory-entry").append("<div>" + 
-        data.val().wname + " " + data.val().wlname + "</div><div>" + 
-        data.val().waddress + "</div><div>" +
-        data.val().wphone + "</div><div>" + 
-        data.val().wemail + "</div><div>" + 
-        data.val().wwebsite + "</div><div>" + 
-        data.val().wcredits + "</div>"
+        $("#directory-entry").append("<div>" +
+            data.wname + " " + data.wlname + "</div><div>" +
+            data.waddress + "</div><div>" +
+            data.wphone + "</div><div>" +
+            data.wemail + "</div><div>" +
+            data.wwebsite + "</div><div>" +
+            data.wcredits + "</div>"
             + "<button class='modifybtn' data=" + data.key + ">EDIT ENTRY</button>"
             + "<button class='deletebtn' data=" + data.key + ">DELETE ENTRY</button></div>"
             + "<div>" + "<hr>" + "</div>");
