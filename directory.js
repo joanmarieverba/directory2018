@@ -214,14 +214,13 @@ database.ref().on("value", function (contents) {
 $(".glyphicon-search").on("click",function (){
     let searchTerm = $("#search").val();
     console.log("works");
-    database.ref().child('/').orderByChild('wname').equalTo(searchTerm).on("value", function (snapshot) {
+    database.ref().child('/').orderByChild('wlname').equalTo(searchTerm).on("value", function (snapshot) {
         $("#results").show();
         snapshot.forEach(function (data) {
             console.log(data.val());
             //id or class and append or use modal
             $("#results").append("<div>" +
                 data.val().wname + " " + data.val().wlname + "</div><div>" +
-                data.val().wlname + "</div><div>" +
                 data.val().waddress + "</div><div>" +
                 data.val().wphone + "</div><div>" +
                 data.val().wemail + "</div><div>" +
