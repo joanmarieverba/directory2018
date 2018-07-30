@@ -264,8 +264,3 @@ $(".glyphicon-search").on("click",function (){
 })
 
 
-
-// Order by value
-// firebase.database().ref('Regions').orderByValue.on('value', function (snapshot) {
-//     loadRegions(snapshot.val());
-// });
