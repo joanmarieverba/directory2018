@@ -1,5 +1,6 @@
 body {
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background: url('background.jpg'); 
     min-height: 100%;
 
 }
